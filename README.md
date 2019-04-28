@@ -28,6 +28,20 @@ This application is utilizing the most recent version of Spring Boot (2.1.4) and
 1. Specialized search queries, look in CompanyRepository.  Check out localhost:8080/companies/search for a listing of them.
 1. JWT Resource server security with OKTA.  2 Properties in the application.properties and the SecurityConfig class. 
 
+### Spring Data Rest Reminders
+
+* Can use projections for loading less data or more data (for example relationships)
+* Can use version/modified data to reduce data requests and ensure you don't overwrite others changes
+* Validations can be implemented in multiple ways, handlers, events, look at the docs
+* HAL Browser can be used for quick testing
+* Can export or disable some actions 
+* Can add additional links to resources
+* Can create custom controller methods, look at the docs
+
+### Spring Data Rest Questions
+
+* Can you use different projections depending on roles?
+
 ### Things To Do
 
 1. Add testing
