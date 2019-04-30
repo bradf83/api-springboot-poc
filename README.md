@@ -22,6 +22,16 @@ This application is utilizing the most recent version of Spring Boot (2.1.4) and
 ### Things to Note
 
 1. Currently not doing anything for CORS as I have my UI Proxy to this address while developing.
+1. Ran into an interesting issue with generated links from API, if using a proxy the links were not being
+rendered properly (not taking X-Forwarded-*).  This is due to a change in Spring that requires you to register
+a bean for this behaviour.  The bean definition is below.  Check the following Spring issue for more information: [Issue](https://www.google.com/url?q=https://github.com/spring-projects/spring-hateoas/issues/862)
+
+```java
+@Bean
+ForwardedHeaderFilter forwardedHeaderFilter() {
+    return new ForwardedHeaderFilter();
+}
+```
 
 ### Implemented Items To check out
 
