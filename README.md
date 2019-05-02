@@ -61,9 +61,10 @@ ForwardedHeaderFilter forwardedHeaderFilter() {
 1. Use Flyway for loading data.
 
 ### Data Model
-This is a fake data model to try out some different features, relationships, others.
+This is a fake data model to try out some different features, relationships, others.  Lots of info straight from [Archer Wiki](https://archer.fandom.com)
 
 1. Company (code, name, chargesGST, chargesPST, owner_id) *Implemented*
 1. Owner (firstName, lastName) (Owns a company) *Implemented*
-1. Employee (firstName, lastName, company_id, salary, title, position)
-1. Product (name, price, comments, company_id)
+1. Employee (firstName, lastName, company_id, salary, title, position) *Implemented*
+1. Product (name, price, comments, company_id) *Implemented*
+1. Need to build a many to many relationship
