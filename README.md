@@ -5,6 +5,7 @@
   * Spring Data Rest
   * Spring Data JPA
   * Spring Security
+  * Spring Security Test (For Mocking Users)
   * Okta Starter (1.1.0)
   * H2 In Memory Database
   * Lombok
@@ -54,7 +55,7 @@ ForwardedHeaderFilter forwardedHeaderFilter() {
 
 ### Things To Do
 
-1. Add testing
+1. Add more testing (minor testing started).  Split out testing to other classes.
 1. Can we implement something like TimeCop?  Possibly use the IClock Java interface to do something smart?
 1. Add role checks to API endpoints
 1. Implement custom method instead of automagic REST methods.
