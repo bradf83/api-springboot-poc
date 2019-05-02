@@ -1,30 +1,30 @@
 package com.example.sbapi.model;
 
+import com.example.sbapi.model.common.CommonProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
 @Getter
 @Setter
-public class Company {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+public class Company extends CommonProperties {
     private String code;
-    private String officialName;
-    private String commonName;
+    private String name;
+    private boolean chargesGST;
+    private boolean chargesPST;
 
-    public Company(String code, String officialName, String commonName) {
+    @ManyToOne(optional = false)
+    private Owner owner;
+
+    public Company(String code, String name, boolean chargesGST, boolean chargesPST, Owner owner) {
         this.code = code;
-        this.officialName = officialName;
-        this.commonName = commonName;
+        this.name = name;
+        this.chargesGST = chargesGST;
+        this.chargesPST = chargesPST;
+        this.owner = owner;
     }
 }

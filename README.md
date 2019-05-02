@@ -56,9 +56,14 @@ ForwardedHeaderFilter forwardedHeaderFilter() {
 
 1. Add testing
 1. Can we implement something like TimeCop?  Possibly use the IClock Java interface to do something smart?
-1. Can we serve all dates as UTC and run our server in UTC?  Think about JPA.
-1. Upgrade to most recent OKTA library or maybe just implement JWT with Spring only??
-1. Expose ID in REST data payload
 1. Add role checks to API endpoints
 1. Implement custom method instead of automagic REST methods.
 1. Use Flyway for loading data.
+
+### Data Model
+This is a fake data model to try out some different features, relationships, others.
+
+1. Company (code, name, chargesGST, chargesPST, owner_id) *Implemented*
+1. Owner (firstName, lastName) (Owns a company) *Implemented*
+1. Employee (firstName, lastName, company_id, salary, title, position)
+1. Product (name, price, comments, company_id)
