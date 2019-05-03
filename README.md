@@ -60,6 +60,7 @@ ForwardedHeaderFilter forwardedHeaderFilter() {
 1. Add role checks to API endpoints
 1. Implement custom method instead of automagic REST methods.
 1. Use Flyway for loading data.
+1. Investigate validators further.  Can we reuse them for multiple events create/save for example?
 
 ### Data Model
 This is a fake data model to try out some different features, relationships, others.  Lots of info straight from [Archer Wiki](https://archer.fandom.com)
