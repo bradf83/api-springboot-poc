@@ -10,4 +10,6 @@ import java.util.List;
 @RepositoryRestResource(collectionResourceRel = "companies", path = "companies")
 public interface CompanyRepository extends PagingAndSortingRepository<Company, Long> {
     List<Company> findByCodeStartsWith(@Param("startingLetters") String startingLetters);
+
+    List<Company> findByCodeContainsOrNameContainsAllIgnoreCase(@Param("search") String searchCode, @Param("search") String searchName);
 }
