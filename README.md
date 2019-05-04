@@ -70,3 +70,34 @@ This is a fake data model to try out some different features, relationships, oth
 1. Employee (firstName, lastName, company_id, salary, title, position) *Implemented*
 1. Product (name, price, comments, company_id) *Implemented*
 1. Need to build a many to many relationship
+
+### Dev Steps
+This is a rough list of steps that allow a developer to create a resource on the api side (spring boot) and how to
+use that resources on the ui side (react).
+
+1. Build the model class (entity/document) along with the backing data store.  Ensure that it extends the common properties
+1. Create the repository for the model.  Make sure to extend the appropriate repository base class.  Remember that all
+methods (GET, POST, PATCH, DELETE) are exported by default and you need to turn them off if you want to disable them.  Check
+the Spring Data Rest [documentation](https://docs.spring.io/spring-data/rest/docs/current/reference/html/#repository-resources.collection-resource) for specific ways to do so
+    * Remember you can now add custom methods to the repository for searching/paging for example.  Again check the spring
+    data [documentation](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.query-creation).
+1. Create any validators for your model.  Ensure to register the validators or use the auto registration, find more info
+in the [documentation](https://docs.spring.io/spring-data/rest/docs/current/reference/html/#validation).
+1. You now have a resource that is exposed over the API, time to move to the front end.
+1. Create a new react component to utilize your resource.  There are a few ways to do this so I am listing some helpful
+links below.
+    * [Main Docs](https://reactjs.org/docs/getting-started.html)
+    * A [functional component](https://reactjs.org/docs/components-and-props.html#function-and-class-components)
+        * [Hooks](https://reactjs.org/docs/hooks-intro.html)
+    * A [class based component](https://reactjs.org/docs/components-and-props.html#function-and-class-components)
+        * [Lifecycle methods](https://reactjs.org/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class)
+    * [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) - Fetching data 
+        * Alternatives
+            * [Axios](https://github.com/axios/axios)
+    * [React Router](https://reacttraining.com/react-router/web/guides/quick-start) - Navigtation 
+1. I know the react portion does not have a great guide yet but it will come I am still learning and settling on a pattern.
+In general:
+    * Create a component
+        * Does your component need to be behind security?  What roles can access and use it?  Are the views different for
+        different roles?
+    * Display or link to your component.
