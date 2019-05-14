@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.event.ValidatingRepositoryEventListener;
 import org.springframework.validation.Validator;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -28,7 +28,7 @@ public class ValidatorEventRegisterConfig implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         // Could add additional event types if needed (https://docs.spring.io/spring-data/rest/docs/current/reference/html/#events).
-        List<String> events = Collections.singletonList("beforeCreate");
+        List<String> events = Arrays.asList("beforeCreate", "beforeSave");
         for (Map.Entry<String, Validator> entry : validators.entrySet()) {
             events.stream()
                     .filter(p -> entry.getKey().startsWith(p))

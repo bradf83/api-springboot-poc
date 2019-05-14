@@ -6,8 +6,10 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-@Component("beforeCreateCompanyValidator")
-public class BeforeCreateCompanyValidator implements Validator {
+//TODO: This logic is exactly the same for create lets try and DRY this up
+
+@Component("beforeSaveCompanyValidator")
+public class BeforeSaveCompanyValidator implements Validator {
     @Override
     public boolean supports(Class<?> aClass) {
         return Company.class.equals(aClass);
