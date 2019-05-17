@@ -19,7 +19,7 @@ public class CompanyProcessor implements ResourceProcessor<Resource<Company>> {
     private final RepositoryEntityLinks repositoryEntityLinks;
     @Override
     public Resource<Company> process(Resource<Company> companyResource) {
-        companyResource.add(repositoryEntityLinks.linkForSingleResource(OwnerRepository.class, companyResource.getContent().getOwner().getId()).withRel("owner-link"));
+        companyResource.add(repositoryEntityLinks.linkForSingleResource(OwnerRepository.class, companyResource.getContent().getOwner().getId()).withRel("ownerLink"));
             return companyResource;
 
     }
