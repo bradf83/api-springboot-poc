@@ -17,10 +17,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class CompanyProcessor implements ResourceProcessor<Resource<Company>> {
     private final RepositoryEntityLinks repositoryEntityLinks;
+
+    /**
+     * Adding an ownerLink to allow users of the API to select the currently selected owner.  Consider this, the system
+     * has 3 owners and their links are "/owners/1", "/owners/2" and "/owners/3".  Before doing this when looking up
+     * a Company you only received a link to owner in the following format "/company/:id/owner" which would bring you
+     * back the owner but it would not allow you to select the current owner in a select box for example.  This allows
+     * that.
+     * @param companyResource the company resource.
+     * @return the enhanced company resource.
+     */
     @Override
     public Resource<Company> process(Resource<Company> companyResource) {
         companyResource.add(repositoryEntityLinks.linkForSingleResource(OwnerRepository.class, companyResource.getContent().getOwner().getId()).withRel("ownerLink"));
-            return companyResource;
-
+        return companyResource;
     }
 }
