@@ -83,6 +83,10 @@ the Spring Data Rest [documentation](https://docs.spring.io/spring-data/rest/doc
     data [documentation](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.query-creation).
 1. Create any validators for your model.  Ensure to register the validators or use the auto registration, find more info
 in the [documentation](https://docs.spring.io/spring-data/rest/docs/current/reference/html/#validation).
+1. Create any resource processors for your model.  Maybe you need to add a link or some other property to your model.  A common use
+case is adding a link to relationships as the HAL spec does not give relationship links that work for selection for example.
+    * [Resource Processors](https://docs.spring.io/spring-data/rest/docs/current/reference/html/#_the_resourceprocessor_interface)
+    * [Programmatic Links](https://docs.spring.io/spring-data/rest/docs/current/reference/html/#_programmatic_links) 
 1. You now have a resource that is exposed over the API, time to move to the front end.
 1. Create a new react component to utilize your resource.  There are a few ways to do this so I am listing some helpful
 links below.
