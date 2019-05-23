@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public abstract class CommonProperties {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @CreatedDate

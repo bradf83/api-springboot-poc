@@ -20,6 +20,30 @@ This application is utilizing the most recent version of Spring Boot (2.1.4) and
 1. You can disable the security by commenting out Spring Security and OKTA in the POM file and then deleting or commenting out the SecurityConfig class.
 1. Once you have done this the API should be available at Navigate to localhost:8080.
 
+### Run PostgreSQL In Docker
+```
+docker run --name local-postgres -p 5432:5432 -d postgres
+```
+
+```
+...Application Properties
+## PostgreSQL
+spring.datasource.url=jdbc:postgresql://localhost:5432/postgres
+spring.datasource.username=postgres
+spring.datasource.password=
+```
+
+### Use H2 Instead
+Maybe you don't have a PostgreSQL locally, use H2 instead.
+```
+... Application Properties
+Comment out the datasource and jpa properties
+```
+
+```
+... POM File
+Add the H2 driver instead of Postgresql
+```
 ### Things to Note
 
 1. Currently not doing anything for CORS as I have my UI Proxy to this address while developing.
