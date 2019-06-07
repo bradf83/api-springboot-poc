@@ -95,6 +95,54 @@ This is a fake data model to try out some different features, relationships, oth
 1. Product (name, price, comments, company_id) *Implemented*
 1. Need to build a many to many relationship
 
+### QueryDSL
+In some cases we may not want to define multiple simple query methods on the repository and may opt to use QueryDSL instead
+it can be setup in the following way
+
+```
+...maven pom dependendies
+
+<dependency>
+    <groupId>com.querydsl</groupId>
+    <artifactId>querydsl-apt</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>com.querydsl</groupId>
+    <artifactId>querydsl-jpa</artifactId>
+</dependency>
+
+... plugin entry to process
+
+<plugin>
+    <groupId>com.mysema.maven</groupId>
+    <artifactId>apt-maven-plugin</artifactId>
+    <version>1.1.3</version>
+    <executions>
+        <execution>
+            <goals>
+                <goal>process</goal>
+            </goals>
+            <configuration>
+                <outputDirectory>target/generated-sources/java</outputDirectory>
+                <processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+```
+
+An example of adding it to the CompanyRepository
+
+```
+Have the CompanyRepository extend the following: QuerydslPredicateExecutor<Company>
+```
+
+Now you should be able to stop, re-compile your code base and restart and search for a company by name by doing the following:
+```
+http://localhost:8080/companies?name=ABCD
+```
+
 ### Dev Steps
 This is a rough list of steps that allow a developer to create a resource on the api side (spring boot) and how to
 use that resources on the ui side (react).
