@@ -12,6 +12,9 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -74,6 +77,26 @@ public class CompanyControllerTests {
                 .andExpect(jsonPath("$._links.ownerLink.href", is("http://localhost/owners/" + company.getOwner().getId())))
                 .andDo(print());
 
+    }
+
+    @Test
+    @WithMockUser
+    public void whenFilteringCompaniesByInstant() throws Exception {
+
+        //Clock fixedClock = Clock.fixed(Instant.parse("2010-01-01T00:00:00.00Z"),ZoneOffset.UTC);
+        //Instant nowFixed = Instant.now(fixedClock);
+
+        // Now show always be greater than the create date from our Flyway script so 4 records should be returned
+        Instant now = Instant.now();
+        mvc.perform(get("/companies/search/findByCreatedAtBefore").param("before",now.toString()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$._embedded.companies", hasSize(4)));
+
+        // 25 years earlier, no data should be present, ChronoUnit.YEARS is not supported for whatever reason.
+        now = Instant.now().minus(9125, ChronoUnit.DAYS);
+        mvc.perform(get("/companies/search/findByCreatedAtBefore").param("before",now.toString()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$._embedded.companies", hasSize(0)));
     }
 
 }
