@@ -4,8 +4,8 @@ import com.example.sbapi.model.Company;
 import com.example.sbapi.repository.OwnerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.rest.webmvc.support.RepositoryEntityLinks;
-import org.springframework.hateoas.Resource;
-import org.springframework.hateoas.ResourceProcessor;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.RepresentationModelProcessor;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
-public class CompanyProcessor implements ResourceProcessor<Resource<Company>> {
+public class CompanyProcessor implements RepresentationModelProcessor<EntityModel<Company>> {
     private final RepositoryEntityLinks repositoryEntityLinks;
 
     /**
@@ -28,8 +28,8 @@ public class CompanyProcessor implements ResourceProcessor<Resource<Company>> {
      * @return the enhanced company resource.
      */
     @Override
-    public Resource<Company> process(Resource<Company> companyResource) {
-        companyResource.add(repositoryEntityLinks.linkForSingleResource(OwnerRepository.class, companyResource.getContent().getOwner().getId()).withRel("ownerLink"));
+    public EntityModel<Company> process(EntityModel<Company> companyResource) {
+        companyResource.add(repositoryEntityLinks.linkToItemResource(OwnerRepository.class, companyResource.getContent().getOwner().getId()).withRel("ownerLink"));
         return companyResource;
     }
 }
