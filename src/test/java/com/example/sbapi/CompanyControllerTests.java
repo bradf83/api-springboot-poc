@@ -99,4 +99,16 @@ public class CompanyControllerTests {
                 .andExpect(jsonPath("$._embedded.companies", hasSize(0)));
     }
 
+    @Test
+    @WithMockUser
+    public void whenFilteringCompaniesWithQueryDslPredicate() throws Exception {
+
+        // Can also add owner.firstName=mallory, or sort=code
+
+        // Companies with an 'e' in their 'code' and an 'm' in their 'name'
+        mvc.perform(get("/companies").param("code", "e").param("name", "m"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$._embedded.companies", hasSize(2)));
+    }
+
 }
