@@ -1,7 +1,7 @@
 ### Spring Boot API
 
 * Uses the following
-  * Spring Boot 2.1.5 (Java 11)
+  * Spring Boot 2.3.0 (Java 13)
   * Spring Data Rest
   * Spring Data JPA
   * Spring Security

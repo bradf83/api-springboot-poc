@@ -32,7 +32,7 @@ public class OwnerControllerTests {
     @Test
     @WithMockUser
     public void getOwner() throws Exception {
-        this.mvc.perform(get("/owners/3")).andExpect(status().isOk());
+        this.mvc.perform(get("/owners/2")).andExpect(status().isOk());
     }
 
     @Test
